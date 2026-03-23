@@ -735,7 +735,7 @@
       <!-- HERO -->
       <section id="home">
         <p class="eyebrow reveal">
-          Data Scientist · Drug Discovery · AI Engineer
+          Data Scientist · Drug Discovery
         </p>
 
         <h1 class="hero-h1 reveal">
@@ -830,7 +830,7 @@
         </div>
 
         <div class="proj-group reveal">
-          <p class="group-lbl">Data Engineering &amp; Analysis</p>
+          <p class="group-lbl">Data Analysis</p>
 
           <div class="proj-row">
             <div>
@@ -912,9 +912,7 @@
               <p class="proj-domain">Dimensionality Reduction · Embeddings</p>
               <p class="proj-title">Immune Repertoire Embedding Landscapes</p>
               <p class="proj-desc">
-                Interactive UMAP/t-SNE visualizations of thousands of BCR
-                sequence embeddings from ESM2, revealing antigen-specificity
-                cluster structure invisible in raw sequence space.
+                Interactive UMAP/t-SNE visualizations of thousands of BCR embeddings from ESM2, revealing antigen-specific clustering not observable in raw sequence space. Validated that embedding geometry separates antigen classes, supporting downstream classification modeling.
               </p>
             </div>
             <div class="proj-right">
@@ -1085,7 +1083,7 @@
           problem:
             "B Cell Receptor specificity prediction is a central challenge in immunology. Determining which antigen a BCR will recognize from sequence alone accelerates antibody discovery and deepens our understanding of adaptive immunity.",
           approach:
-            "Fine-tuned ESM2 and ProtT5 using PEFT (LoRA) with contrastive and supervised classification objectives. Careful repertoire-level data splits prevent leakage — a non-obvious but critical challenge in immune ML.",
+            "Fine-tuned protein language models to predict antigen specificity from BCR sequences, outperforming sequence-based baselines and enabling scalable antibody discovery.",
           tools: [
             "PyTorch",
             "ESM2",
@@ -1097,7 +1095,7 @@
             "Pandas",
           ],
           results:
-            "Strong classification performance across multiple antigen specificity classes. Ablation studies revealed LoRA rank and attention head selection as primary performance drivers. Presented at NeurIPS 2024.",
+            "Achieved >80% accuracy on antigen classification, outperforming antibody-specific baselines (55%). Demonstrated statistically significant embedding separation and generalized to unseen repertoires, with experimentally validated nanobody candidates. Presented at NeurIPS 2024.",
           metrics: [
             { v: "NeurIPS", l: "Presented" },
             { v: "PEFT", l: "Method" },
