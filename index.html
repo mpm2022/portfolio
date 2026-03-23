@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mariana Paco Mendivil — Data Scientist & AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #07090f;
+        --bg2: #0d1117;
+        --bg3: #131820;
+        --surface: #161c26;
+        --surface2: #1e2737;
+        --border: #1f2d3d;
+        --border2: #2a3a50;
+        --text: #e8eef5;
+        --text2: #8fa3b8;
+        --text3: #5a7390;
+        --accent: #4af0c4;
+        --accent2: #0dc8a0;
+        --accent3: #38bdf8;
+        --warm: #f0a84a;
+        --warm2: #e8855a;
+        --purple: #a78bfa;
+        --red: #f87171;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Syne", sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 2px;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 0 clamp(1.5rem, 5vw, 4rem);
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(7, 9, 15, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(31, 45, 61, 0.5);
+        transition: background 0.3s;
+      }
+
+      .nav-logo {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.2rem;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-logo span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .nav-cta {
+        padding: 0.45rem 1.1rem;
+        background: transparent;
+        border: 1px solid var(--accent);
+        border-radius: 4px;
+        color: var(--accent) !important;
+        font-size: 0.75rem !important;
+        transition: background 0.2s, color 0.2s !important;
+      }
+
+      .nav-cta:hover {
+        background: var(--accent) !important;
+        color: var(--bg) !important;
+      }
+
+      /* ── HERO ── */
+      #home {
+        min-height: 100vh;
+        padding: 64px 0 0;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(74, 240, 196, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(74, 240, 196, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 20%,
+          transparent 100%
+        );
+      }
+
+      .hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      .orb1 {
+        width: 600px;
+        height: 600px;
+        background: var(--accent);
+        top: -200px;
+        right: -100px;
+        animation: orb-drift 12s ease-in-out infinite alternate;
+      }
+      .orb2 {
+        width: 400px;
+        height: 400px;
+        background: var(--purple);
+        bottom: -100px;
+        left: -100px;
+        animation: orb-drift 16s ease-in-out infinite alternate-reverse;
+      }
+      .orb3 {
+        width: 300px;
+        height: 300px;
+        background: var(--accent3);
+        top: 40%;
+        left: 40%;
+        animation: orb-drift 20s ease-in-out infinite;
+      }
+
+      @keyframes orb-drift {
+        from {
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          transform: translate(40px, 30px) scale(1.05);
+        }
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fade-up 0.8s ease forwards 0.2s;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .hero-name {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(3rem, 8vw, 6.5rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        animation: fade-up 0.8s ease forwards 0.4s;
+      }
+
+      .hero-name em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .hero-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: clamp(0.85rem, 2vw, 1rem);
+        color: var(--text2);
+        letter-spacing: 0.05em;
+        margin-bottom: 2.5rem;
+        opacity: 0;
+        animation: fade-up 0.8s ease forwards 0.6s;
+      }
+
+      .hero-bio {
+        font-family: "Lora", serif;
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        color: var(--text2);
+        line-height: 1.8;
+        max-width: 640px;
+        margin-bottom: 3rem;
+        opacity: 0;
+        animation: fade-up 0.8s ease forwards 0.8s;
+      }
+
+      .hero-bio strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 4rem;
+        opacity: 0;
+        animation: fade-up 0.8s ease forwards 1s;
+      }
+
+      .btn-primary {
+        padding: 0.8rem 1.8rem;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 4px;
+        font-family: "Syne", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(74, 240, 196, 0.3);
+      }
+
+      .btn-ghost {
+        padding: 0.8rem 1.8rem;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        font-family: "Syne", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        opacity: 0;
+        animation: fade-up 0.8s ease forwards 1.2s;
+      }
+
+      .tag {
+        padding: 0.35rem 0.85rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--text3);
+        transition: border-color 0.2s, color 0.2s;
+      }
+
+      .tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .hero-stats {
+        position: absolute;
+        right: clamp(1.5rem, 5vw, 4rem);
+        bottom: clamp(3rem, 6vw, 5rem);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        opacity: 0;
+        animation: fade-left 0.8s ease forwards 1.4s;
+      }
+
+      .stat {
+        text-align: right;
+      }
+
+      .stat-num {
+        font-family: "DM Serif Display", serif;
+        font-size: 2.5rem;
+        color: var(--text);
+        line-height: 1;
+      }
+
+      .stat-num span {
+        color: var(--accent);
+      }
+
+      .stat-label {
+        font-size: 0.7rem;
+        color: var(--text3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fade-left {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* ── SECTION COMMONS ── */
+      section {
+        padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .section-label::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .section-title {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 1rem;
+      }
+
+      .section-sub {
+        font-family: "Lora", serif;
+        font-size: 1.05rem;
+        color: var(--text2);
+        line-height: 1.7;
+        max-width: 560px;
+        margin-bottom: 3.5rem;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+        margin: 0 clamp(1.5rem, 5vw, 4rem);
+      }
+
+      /* ── PROJECTS ── */
+      .project-category-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text3);
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1.5px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        margin-bottom: 3rem;
+      }
+
+      .project-card {
+        background: var(--bg2);
+        padding: 2rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--accent);
+        transition: height 0.3s ease;
+      }
+
+      .project-card:hover::before {
+        height: 100%;
+      }
+      .project-card:hover {
+        background: var(--bg3);
+      }
+
+      .project-card-type {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .type-ml {
+        color: var(--accent);
+      }
+      .type-bio {
+        color: var(--warm);
+      }
+      .type-analysis {
+        color: var(--purple);
+      }
+      .type-viz {
+        color: var(--accent3);
+      }
+
+      .project-card-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.35rem;
+        line-height: 1.2;
+        color: var(--text);
+        margin-bottom: 0.75rem;
+        transition: color 0.2s;
+      }
+
+      .project-card:hover .project-card-title {
+        color: var(--accent);
+      }
+
+      .project-card-desc {
+        font-size: 0.88rem;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tool-badge {
+        padding: 0.2rem 0.6rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--text3);
+      }
+
+      .project-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--text3);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .project-link:hover {
+        color: var(--accent);
+      }
+
+      .project-link svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .project-badge {
+        padding: 0.2rem 0.6rem;
+        border-radius: 3px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .badge-neurips {
+        background: rgba(167, 139, 250, 0.15);
+        color: var(--purple);
+        border: 1px solid rgba(167, 139, 250, 0.3);
+      }
+      .badge-biorxiv {
+        background: rgba(74, 240, 196, 0.1);
+        color: var(--accent);
+        border: 1px solid rgba(74, 240, 196, 0.2);
+      }
+      .badge-live {
+        background: rgba(248, 113, 113, 0.1);
+        color: var(--red);
+        border: 1px solid rgba(248, 113, 113, 0.2);
+      }
+
+      /* ── PROJECT MODAL ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(7, 9, 15, 0.92);
+        backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal {
+        background: var(--bg2);
+        border: 1px solid var(--border2);
+        border-radius: 8px;
+        max-width: 760px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        transform: translateY(20px);
+        transition: transform 0.3s;
+      }
+
+      .modal-overlay.active .modal {
+        transform: translateY(0);
+      }
+
+      .modal-header {
+        padding: 2rem 2rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: var(--bg2);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .modal-close {
+        background: none;
+        border: none;
+        color: var(--text3);
+        cursor: pointer;
+        font-size: 1.3rem;
+        line-height: 1;
+        flex-shrink: 0;
+        transition: color 0.2s;
+      }
+
+      .modal-close:hover {
+        color: var(--text);
+      }
+
+      .modal-body {
+        padding: 2rem;
+      }
+
+      .modal-section {
+        margin-bottom: 2rem;
+      }
+
+      .modal-section-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+
+      .modal-text {
+        font-family: "Lora", serif;
+        font-size: 0.95rem;
+        color: var(--text2);
+        line-height: 1.75;
+      }
+
+      .modal-metric-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+      }
+
+      .modal-metric {
+        padding: 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      .modal-metric-val {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.5rem;
+        color: var(--accent);
+        display: block;
+      }
+
+      .modal-metric-label {
+        font-size: 0.72rem;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── TUTORIALS ── */
+      .tutorial-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .tutorial-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+
+      .tutorial-item:last-child {
+        border-bottom: none;
+      }
+      .tutorial-item:hover {
+        background: var(--surface);
+      }
+
+      .tutorial-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--text3);
+        letter-spacing: 0.05em;
+        width: 30px;
+        flex-shrink: 0;
+      }
+
+      .tutorial-info {
+        flex: 1;
+      }
+
+      .tutorial-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text);
+        margin-bottom: 0.25rem;
+      }
+
+      .tutorial-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text3);
+        display: flex;
+        gap: 1rem;
+      }
+
+      .tutorial-difficulty {
+        padding: 0.15rem 0.5rem;
+        border-radius: 2px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        flex-shrink: 0;
+      }
+
+      .diff-beginner {
+        background: rgba(74, 240, 196, 0.1);
+        color: var(--accent);
+      }
+      .diff-intermediate {
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--accent3);
+      }
+      .diff-advanced {
+        background: rgba(240, 168, 74, 0.1);
+        color: var(--warm);
+      }
+
+      .tutorial-arrow {
+        color: var(--text3);
+        font-size: 1rem;
+        transition: color 0.2s, transform 0.2s;
+      }
+
+      .tutorial-item:hover .tutorial-arrow {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* ── LEARNING NOTES ── */
+      .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .note-card {
+        padding: 1.75rem;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        transition: border-color 0.2s, transform 0.2s;
+        cursor: pointer;
+      }
+
+      .note-card:hover {
+        border-color: var(--border2);
+        transform: translateY(-3px);
+      }
+
+      .note-icon {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .note-category {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text3);
+        margin-bottom: 0.5rem;
+      }
+
+      .note-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.1rem;
+        color: var(--text);
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+      }
+
+      .note-summary {
+        font-size: 0.83rem;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .note-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .note-date {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--text3);
+      }
+
+      .note-tag {
+        padding: 0.15rem 0.5rem;
+        border-radius: 2px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        background: var(--surface2);
+        color: var(--text3);
+        border: 1px solid var(--border);
+      }
+
+      /* ── CAREER JOURNEY ── */
+      .career-layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .blog-post {
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2.5rem;
+        cursor: pointer;
+      }
+
+      .blog-post:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .blog-date {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text3);
+        letter-spacing: 0.05em;
+      }
+
+      .blog-dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--border2);
+      }
+
+      .blog-category {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .blog-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        color: var(--text);
+        margin-bottom: 0.75rem;
+        transition: color 0.2s;
+      }
+
+      .blog-post:hover .blog-title {
+        color: var(--accent);
+      }
+
+      .blog-excerpt {
+        font-family: "Lora", serif;
+        font-size: 0.92rem;
+        color: var(--text2);
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+
+      .blog-read-more {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        text-decoration: none;
+      }
+
+      /* Sidebar */
+      .career-sidebar {
+        position: sticky;
+        top: 84px;
+      }
+
+      .sidebar-block {
+        padding: 1.5rem;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text3);
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+        margin-top: 0.35rem;
+        position: relative;
+      }
+
+      .timeline-dot::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 3px;
+        width: 1px;
+        height: 30px;
+        background: var(--border);
+      }
+
+      .timeline-item:last-child .timeline-dot::after {
+        display: none;
+      }
+
+      .timeline-content {
+        padding-bottom: 0.5rem;
+      }
+
+      .timeline-role {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.1rem;
+      }
+
+      .timeline-org {
+        font-size: 0.75rem;
+        color: var(--text2);
+        margin-bottom: 0.1rem;
+      }
+
+      .timeline-year {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--text3);
+      }
+
+      .pub-item {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pub-item:last-child {
+        border-bottom: none;
+      }
+
+      .pub-title {
+        font-size: 0.8rem;
+        color: var(--text);
+        line-height: 1.4;
+        margin-bottom: 0.3rem;
+      }
+
+      .pub-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        color: var(--accent);
+      }
+
+      /* ── SKILLS STRIP ── */
+      .skills-section {
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 3rem clamp(1.5rem, 5vw, 4rem);
+        overflow: hidden;
+      }
+
+      .skills-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .skills-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .skill-chip {
+        padding: 0.4rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--text2);
+        white-space: nowrap;
+        transition: border-color 0.2s, color 0.2s;
+      }
+
+      .skill-chip:hover {
+        border-color: var(--accent2);
+        color: var(--accent);
+      }
+
+      .skill-chip.highlight {
+        border-color: rgba(74, 240, 196, 0.3);
+        color: var(--accent);
+        background: rgba(74, 240, 196, 0.05);
+      }
+
+      /* ── CONTACT / FOOTER ── */
+      .footer-section {
+        text-align: center;
+        padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-section::before {
+        content: "CONTACT";
+        position: absolute;
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(6rem, 15vw, 14rem);
+        color: rgba(31, 45, 61, 0.4);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        white-space: nowrap;
+        letter-spacing: -0.05em;
+      }
+
+      .footer-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .footer-email {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        display: block;
+        margin-bottom: 2rem;
+        transition: color 0.2s;
+      }
+
+      .footer-email:hover {
+        color: var(--accent);
+      }
+
+      .social-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text2);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+      }
+
+      .social-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(74, 240, 196, 0.05);
+      }
+
+      .footer-bottom {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--text3);
+        letter-spacing: 0.05em;
+        border-top: 1px solid var(--border);
+        padding-top: 2rem;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-stats {
+          display: none;
+        }
+        .career-layout {
+          grid-template-columns: 1fr;
+        }
+        .career-sidebar {
+          position: relative;
+          top: 0;
+        }
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── INTERSECT ANIMATION ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── CURSOR GLOW ── */
+      .cursor-glow {
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+        background: radial-gradient(
+          circle,
+          rgba(74, 240, 196, 0.04) 0%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        transition: left 0.08s, top 0.08s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ── NAV ── -->
+    <nav>
+      <a href="#home" class="nav-logo">MP<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#tutorials">Tutorials</a></li>
+        <li><a href="#learning">Learning</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section
+      id="home"
+      style="padding-left: 0; padding-right: 0; max-width: none"
+    >
+      <div class="hero-grid-bg"></div>
+      <div class="orb hero-orb orb1"></div>
+      <div class="orb hero-orb orb2"></div>
+      <div class="orb hero-orb orb3"></div>
+
+      <div class="hero-inner">
+        <div class="hero-eyebrow">
+          Data Scientist · AI Engineer · Bioinformatics
+        </div>
+        <h1 class="hero-name">Mariana<br /><em>Paco Mendivil</em></h1>
+        <p class="hero-title">
+          San Diego, CA &nbsp;·&nbsp; marianapaco.m.21@gmail.com &nbsp;·&nbsp;
+          UC San Diego, BS Data Science
+        </p>
+
+        <p class="hero-bio">
+          I build <strong>transformer-based models</strong> for protein sequence
+          analysis and immune repertoire interpretation. My work lives at the
+          intersection of deep learning, molecular biology, and data
+          storytelling — turning complex biological signals into
+          <strong>actionable scientific insights</strong>. I'm driven by
+          curiosity, a love of open science, and the belief that good data
+          communication is just as powerful as good code.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View My Work</a>
+          <a href="#contact" class="btn-ghost">Get in Touch</a>
+        </div>
+
+        <div class="hero-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Transformer Models</span>
+          <span class="tag">LoRA/PEFT</span>
+          <span class="tag">Bioinformatics</span>
+          <span class="tag">HPC/Slurm</span>
+          <span class="tag">ESM2 · ProtT5</span>
+          <span class="tag">Metagenomics</span>
+          <span class="tag">Causal Discovery</span>
+          <span class="tag">Protein Modeling</span>
+          <span class="tag">AWS · Docker</span>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">2<span>+</span></div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3<span>+</span></div>
+          <div class="stat-label">ML Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">NeurIPS Poster</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── PROJECTS ── -->
+    <section id="projects">
+      <div class="section-label reveal">Selected Projects</div>
+      <h2 class="section-title reveal">
+        Work that<br /><em style="font-style: italic; color: var(--accent)"
+          >moves the needle</em
+        >
+      </h2>
+      <p class="section-sub reveal">
+        A curated selection spanning protein ML, bioinformatics pipelines, and
+        causal analysis — each grounded in real scientific problems.
+      </p>
+
+      <!-- ML Case Studies -->
+      <div class="project-category-label reveal">
+        Machine Learning Case Studies
+      </div>
+      <div class="project-grid reveal">
+        <div class="project-card" onclick="openModal('aspred')">
+          <div class="project-card-type type-ml">ML · NLP · Immunology</div>
+          <h3 class="project-card-title">
+            ASPred: BCR Specificity via Protein Language Models
+          </h3>
+          <p class="project-card-desc">
+            PEFT fine-tuned transformer model (ESM2/ProtT5) for antigen-specific
+            B Cell Receptor classification. Leveraged evolutionary signals in
+            immune repertoires with contrastive learning objectives.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">PyTorch</span>
+            <span class="tool-badge">ESM2</span>
+            <span class="tool-badge">LoRA/PEFT</span>
+            <span class="tool-badge">Slurm HPC</span>
+            <span class="tool-badge">Contrastive Learning</span>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-link">View Details →</span>
+            <span class="project-badge badge-neurips">NeurIPS 2024</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('abaffinity')">
+          <div class="project-card-type type-ml">
+            ML · Structural Biology · Drug Design
+          </div>
+          <h3 class="project-card-title">
+            Ab-Affinity: LLM-Guided Antibody Maturation
+          </h3>
+          <p class="project-card-desc">
+            Combined sequence-level predictions with structure- and MD-driven
+            metrics (GROMACS, SnugDock) to build a supervised optimization loop
+            for antibody affinity maturation.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">PyTorch</span>
+            <span class="tool-badge">GROMACS</span>
+            <span class="tool-badge">Rosetta</span>
+            <span class="tool-badge">SnugDock</span>
+            <span class="tool-badge">ProteinMPNN</span>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-link">View Details →</span>
+            <span class="project-badge badge-biorxiv">bioRxiv 2024</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('t2d')">
+          <div class="project-card-type type-analysis">
+            Causal Discovery · Microbiome · Health
+          </div>
+          <h3 class="project-card-title">
+            Causality in Gut Microbiome for Type 2 Diabetes
+          </h3>
+          <p class="project-card-desc">
+            Applied PC, FCI, and GES causal discovery algorithms to identify
+            disease-driving gut microbes. Built interpretable predictive models
+            linking microbial networks to metabolic disease risk.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">PC/FCI/GES</span>
+            <span class="tool-badge">Pandas</span>
+            <span class="tool-badge">scikit-learn</span>
+            <span class="tool-badge">Plotly</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="#" class="project-link">Live Site →</a>
+            <span class="project-badge badge-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Analysis -->
+      <div class="project-category-label reveal">Data Analysis Reports</div>
+      <div class="project-grid reveal">
+        <div class="project-card" onclick="openModal('metagen')">
+          <div class="project-card-type type-bio">
+            Metagenomics · Soil · Microbiome
+          </div>
+          <h3 class="project-card-title">
+            Soil Microbiome Profiling at Loam Bio
+          </h3>
+          <p class="project-card-desc">
+            End-to-end metagenomic analysis pipeline for large-scale soil
+            microbiome characterization. Built dashboards for scientific and
+            leadership stakeholders using Plotly/Dash.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Qiime2</span>
+            <span class="tool-badge">Kraken2</span>
+            <span class="tool-badge">HUMAnN</span>
+            <span class="tool-badge">AWS S3</span>
+            <span class="tool-badge">Docker</span>
+            <span class="tool-badge">Plotly/Dash</span>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-link">View Details →</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('antibody')">
+          <div class="project-card-type type-analysis">
+            ML · Structural Biology · NIH
+          </div>
+          <h3 class="project-card-title">
+            Antibody–Antigen Structural Energy Analysis
+          </h3>
+          <p class="project-card-desc">
+            Developed Random Forest and SVM models integrated with Rosetta
+            SnugDock simulations to analyze intermolecular energy patterns in
+            antibody-antigen interfaces for NIH-funded research.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Random Forest</span>
+            <span class="tool-badge">SVM</span>
+            <span class="tool-badge">Rosetta</span>
+            <span class="tool-badge">Pandas</span>
+            <span class="tool-badge">Python</span>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-link">View Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Visualization -->
+      <div class="project-category-label reveal">Data Visualization</div>
+      <div class="project-grid reveal">
+        <div class="project-card" onclick="openModal('viz1')">
+          <div class="project-card-type type-viz">
+            Visualization · Bioinformatics
+          </div>
+          <h3 class="project-card-title">
+            Immune Repertoire Embedding Landscapes
+          </h3>
+          <p class="project-card-desc">
+            Interactive UMAP and t-SNE visualizations of antibody sequence
+            embeddings from ESM2, revealing cluster separation by antigen
+            specificity across thousands of BCR sequences.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">UMAP</span>
+            <span class="tool-badge">t-SNE</span>
+            <span class="tool-badge">Plotly</span>
+            <span class="tool-badge">Seaborn</span>
+            <span class="tool-badge">ESM2</span>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-link">View Details →</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('viz2')">
+          <div class="project-card-type type-viz">
+            Visualization · Microbiome
+          </div>
+          <h3 class="project-card-title">
+            Microbiome Causal Network Dashboard
+          </h3>
+          <p class="project-card-desc">
+            Interactive network visualization of gut microbial causal
+            relationships in Type 2 Diabetes patients. Built for scientific
+            communication with non-specialist stakeholders.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Plotly/Dash</span>
+            <span class="tool-badge">NetworkX</span>
+            <span class="tool-badge">D3.js</span>
+            <span class="tool-badge">Python</span>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-link">View Details →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── SKILLS ── -->
+    <div class="skills-section">
+      <div class="skills-inner">
+        <div class="section-label" style="margin-bottom: 1.5rem">
+          Technical Stack
+        </div>
+        <div class="skills-row">
+          <span class="skill-chip highlight">PyTorch</span>
+          <span class="skill-chip highlight">Transformer Models</span>
+          <span class="skill-chip highlight">LoRA / PEFT</span>
+          <span class="skill-chip">Contrastive Learning</span>
+          <span class="skill-chip">Distributed Training</span>
+          <span class="skill-chip highlight">ESM2</span>
+          <span class="skill-chip">ProtT5</span>
+          <span class="skill-chip">AlphaFold / ESMFold</span>
+          <span class="skill-chip">RFdiffusion</span>
+        </div>
+        <div class="skills-row">
+          <span class="skill-chip highlight">Qiime2</span>
+          <span class="skill-chip">Kraken2</span>
+          <span class="skill-chip">HUMAnN</span>
+          <span class="skill-chip highlight">GROMACS</span>
+          <span class="skill-chip">Rosetta / SnugDock</span>
+          <span class="skill-chip">ProteinMPNN</span>
+          <span class="skill-chip">AutoDock</span>
+          <span class="skill-chip">V(D)J Pipelines</span>
+        </div>
+        <div class="skills-row">
+          <span class="skill-chip highlight">HPC / Slurm</span>
+          <span class="skill-chip">AWS / GCP</span>
+          <span class="skill-chip">Docker / Singularity</span>
+          <span class="skill-chip">Pandas</span>
+          <span class="skill-chip">Plotly / Dash</span>
+          <span class="skill-chip">scikit-learn</span>
+          <span class="skill-chip">NumPy</span>
+          <span class="skill-chip">Spanish (Fluent)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TUTORIALS ── -->
+    <section id="tutorials">
+      <div class="section-label reveal">Tutorials</div>
+      <h2 class="section-title reveal">
+        Step-by-step<br /><em style="font-style: italic; color: var(--accent3)"
+          >guides & walkthroughs</em
+        >
+      </h2>
+      <p class="section-sub reveal">
+        Practical tutorials on the tools, libraries, and workflows I use most —
+        written for clarity, built from experience.
+      </p>
+
+      <div class="tutorial-list reveal">
+        <div class="tutorial-item">
+          <div class="tutorial-num">01</div>
+          <div class="tutorial-info">
+            <div class="tutorial-title">
+              Fine-Tuning ESM2 with LoRA for Sequence Classification
+            </div>
+            <div class="tutorial-meta">
+              <span>PyTorch · Transformers · PEFT</span>
+              <span>~25 min read</span>
+            </div>
+          </div>
+          <span class="tutorial-difficulty diff-advanced">Advanced</span>
+          <span class="tutorial-arrow">→</span>
+        </div>
+
+        <div class="tutorial-item">
+          <div class="tutorial-num">02</div>
+          <div class="tutorial-info">
+            <div class="tutorial-title">
+              Building Reproducible ML Pipelines on Slurm HPC
+            </div>
+            <div class="tutorial-meta">
+              <span>Bash · Python · Slurm</span>
+              <span>~18 min read</span>
+            </div>
+          </div>
+          <span class="tutorial-difficulty diff-intermediate"
+            >Intermediate</span
+          >
+          <span class="tutorial-arrow">→</span>
+        </div>
+
+        <div class="tutorial-item">
+          <div class="tutorial-num">03</div>
+          <div class="tutorial-info">
+            <div class="tutorial-title">
+              End-to-End Metagenomic Analysis with Qiime2 & Kraken2
+            </div>
+            <div class="tutorial-meta">
+              <span>Qiime2 · Kraken2 · Docker</span>
+              <span>~30 min read</span>
+            </div>
+          </div>
+          <span class="tutorial-difficulty diff-intermediate"
+            >Intermediate</span
+          >
+          <span class="tutorial-arrow">→</span>
+        </div>
+
+        <div class="tutorial-item">
+          <div class="tutorial-num">04</div>
+          <div class="tutorial-info">
+            <div class="tutorial-title">
+              Causal Discovery in Microbiome Data: PC, FCI, and GES
+            </div>
+            <div class="tutorial-meta">
+              <span>Python · causal-learn · NetworkX</span>
+              <span>~22 min read</span>
+            </div>
+          </div>
+          <span class="tutorial-difficulty diff-advanced">Advanced</span>
+          <span class="tutorial-arrow">→</span>
+        </div>
+
+        <div class="tutorial-item">
+          <div class="tutorial-num">05</div>
+          <div class="tutorial-info">
+            <div class="tutorial-title">
+              Visualizing Protein Embeddings with UMAP and Plotly
+            </div>
+            <div class="tutorial-meta">
+              <span>UMAP · Plotly · Python</span>
+              <span>~12 min read</span>
+            </div>
+          </div>
+          <span class="tutorial-difficulty diff-beginner">Beginner</span>
+          <span class="tutorial-arrow">→</span>
+        </div>
+
+        <div class="tutorial-item">
+          <div class="tutorial-num">06</div>
+          <div class="tutorial-info">
+            <div class="tutorial-title">
+              Ablation Studies: How to Design & Report Them Properly
+            </div>
+            <div class="tutorial-meta">
+              <span>ML Best Practices · PyTorch</span>
+              <span>~15 min read</span>
+            </div>
+          </div>
+          <span class="tutorial-difficulty diff-intermediate"
+            >Intermediate</span
+          >
+          <span class="tutorial-arrow">→</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── LEARNING NOTES ── -->
+    <section id="learning">
+      <div class="section-label reveal">Learning Notes</div>
+      <h2 class="section-title reveal">
+        Notes from<br /><em style="font-style: italic; color: var(--warm)"
+          >the learning curve</em
+        >
+      </h2>
+      <p class="section-sub reveal">
+        Short summaries of courses, papers, certifications, and key concepts I'm
+        continuously exploring at the intersection of ML and biology.
+      </p>
+
+      <div class="notes-grid reveal">
+        <div class="note-card">
+          <span class="note-icon">🧬</span>
+          <div class="note-category">Research Paper</div>
+          <h3 class="note-title">
+            Attention Is All You Need — and What It Means for Proteins
+          </h3>
+          <p class="note-summary">
+            How the original transformer architecture was adapted for biological
+            sequences. Key takeaway: positional encoding matters differently in
+            proteins vs. language.
+          </p>
+          <div class="note-footer">
+            <span class="note-date">Jan 2025</span>
+            <span class="note-tag">Transformers</span>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">📊</span>
+          <div class="note-category">Course</div>
+          <h3 class="note-title">Probabilistic Graphical Models — UCSD</h3>
+          <p class="note-summary">
+            Bayesian networks, Markov models, and inference algorithms.
+            Foundational for causal discovery work in the gut microbiome
+            project.
+          </p>
+          <div class="note-footer">
+            <span class="note-date">Fall 2024</span>
+            <span class="note-tag">Statistics</span>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">🔬</span>
+          <div class="note-category">Concept Deep-Dive</div>
+          <h3 class="note-title">
+            V(D)J Recombination and BCR Repertoire Diversity
+          </h3>
+          <p class="note-summary">
+            Understanding the biology behind BCR diversity was essential to
+            preventing repertoire-level data leakage in the ASPred model.
+            Biology shapes the data split strategy.
+          </p>
+          <div class="note-footer">
+            <span class="note-date">Nov 2024</span>
+            <span class="note-tag">Immunology</span>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">⚡</span>
+          <div class="note-category">Tool Exploration</div>
+          <h3 class="note-title">
+            Parameter-Efficient Fine-Tuning: LoRA vs Adapters vs Prefix Tuning
+          </h3>
+          <p class="note-summary">
+            Comprehensive comparison of PEFT methods applied to protein LMs.
+            LoRA won for our use case due to rank flexibility and compatibility
+            with ESM2 attention heads.
+          </p>
+          <div class="note-footer">
+            <span class="note-date">Oct 2024</span>
+            <span class="note-tag">PEFT</span>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">🌱</span>
+          <div class="note-category">Project Retrospective</div>
+          <h3 class="note-title">
+            What I Learned Running Metagenomics at Scale on AWS
+          </h3>
+          <p class="note-summary">
+            Lessons from processing terabytes of soil microbiome data: S3
+            lifecycle policies, Docker layer caching, and why Kraken2's database
+            size matters more than RAM.
+          </p>
+          <div class="note-footer">
+            <span class="note-date">Aug 2024</span>
+            <span class="note-tag">Cloud</span>
+          </div>
+        </div>
+
+        <div class="note-card">
+          <span class="note-icon">📖</span>
+          <div class="note-category">Book Notes</div>
+          <h3 class="note-title">
+            The Elements of Statistical Learning — Key Takeaways
+          </h3>
+          <p class="note-summary">
+            Chapter-by-chapter notes focusing on regularization, ensemble
+            methods, and kernel methods — and how they connect to modern deep
+            learning intuitions.
+          </p>
+          <div class="note-footer">
+            <span class="note-date">Summer 2024</span>
+            <span class="note-tag">Statistics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── CAREER JOURNEY ── -->
+    <section id="career">
+      <div class="section-label reveal">Career Journey</div>
+      <h2 class="section-title reveal">
+        Reflections on<br /><em style="font-style: italic; color: var(--purple)"
+          >the path so far</em
+        >
+      </h2>
+
+      <div class="career-layout reveal">
+        <!-- Blog Posts
+        <div>
+          <div class="blog-post">
+            <div class="blog-meta">
+              <span class="blog-date">Feb 2025</span>
+              <div class="blog-dot"></div>
+              <span class="blog-category">Reflection</span>
+            </div>
+            <h3 class="blog-title">
+              What presenting at NeurIPS taught me about scientific
+              communication
+            </h3>
+            <p class="blog-excerpt">
+              Preparing a poster for the Latinx in AI workshop at NeurIPS 2024
+              forced me to distill two years of complex protein ML work into
+              something a non-specialist could engage with in 90 seconds. The
+              hardest part wasn't the science — it was the story. Here's what I
+              learned about making research land...
+            </p>
+            <span class="blog-read-more">Read more →</span>
+          </div>
+
+          <div class="blog-post">
+            <div class="blog-meta">
+              <span class="blog-date">Dec 2024</span>
+              <div class="blog-dot"></div>
+              <span class="blog-category">Career Advice</span>
+            </div>
+            <h3 class="blog-title">
+              From coursework to research lab: bridging the gap between UCSD and
+              real ML
+            </h3>
+            <p class="blog-excerpt">
+              There's a wide gap between implementing a neural network in a
+              homework problem and debugging a 72-hour Slurm training job on a
+              protein language model. The gap is mostly about systems thinking,
+              patience, and learning to love log files. For aspiring ML
+              researchers, this is my honest account of that transition...
+            </p>
+            <span class="blog-read-more">Read more →</span>
+          </div>
+
+          <div class="blog-post">
+            <div class="blog-meta">
+              <span class="blog-date">Sep 2024</span>
+              <div class="blog-dot"></div>
+              <span class="blog-category">Industry Insight</span>
+            </div>
+            <h3 class="blog-title">
+              Data science at a startup vs. academic research: what nobody tells
+              you
+            </h3>
+            <p class="blog-excerpt">
+              At Loam Bio, I owned pipelines end-to-end and shipped dashboards
+              to non-technical leadership within days. At Keck Graduate
+              Institute, I spent weeks perfecting a single evaluation metric.
+              Both experiences shaped how I think about rigor, speed, and
+              audience. The skills transfer — but the mindset shifts are real...
+            </p>
+            <span class="blog-read-more">Read more →</span>
+          </div>
+
+          <div class="blog-post">
+            <div class="blog-meta">
+              <span class="blog-date">Jun 2024</span>
+              <div class="blog-dot"></div>
+              <span class="blog-category">Advice</span>
+            </div>
+            <h3 class="blog-title">
+              For Latinx students entering data science: the things I wish I'd
+              known earlier
+            </h3>
+            <p class="blog-excerpt">
+              Representation matters — but so does technical preparation,
+              community, and the courage to put your work out in the world
+              before it feels ready. I'm writing the resource I wish had existed
+              when I started my data science degree at UCSD. This is for you, if
+              you're just beginning...
+            </p>
+            <span class="blog-read-more">Read more →</span>
+          </div>
+        </div>
+        -->
+        <!-- Sidebar -->
+        <div class="career-sidebar">
+          <div class="sidebar-block">
+            <div class="sidebar-title">Experience Timeline</div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-role">Research Intern, Data Science</div>
+                <div class="timeline-org">Keck Graduate Institute</div>
+                <div class="timeline-year">2024 – Present</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-role">Bioinformatics Officer</div>
+                <div class="timeline-org">Loam Bio</div>
+                <div class="timeline-year">2024</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-role">Summer Research Assistant</div>
+                <div class="timeline-org">Keck Graduate Institute</div>
+                <div class="timeline-year">2023</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-role">BS, Data Science</div>
+                <div class="timeline-org">UC San Diego</div>
+                <div class="timeline-year">2021 – 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-block">
+            <div class="sidebar-title">Publications</div>
+            <div class="pub-item">
+              <div class="pub-title">
+                Fine-Tuned Protein Language Model Identifies Antigen-Specific
+                BCRs from Immune Repertoires
+              </div>
+              <div class="pub-meta">bioRxiv 2025 · NeurIPS Latinx in AI</div>
+            </div>
+            <div class="pub-item">
+              <div class="pub-title">
+                LLM-guided Antibody Affinity Maturation
+              </div>
+              <div class="pub-meta">bioRxiv 2024 · Preprint</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT / FOOTER ── -->
+    <div
+      style="background: var(--bg2); border-top: 1px solid var(--border)"
+      id="contact"
+    >
+      <div class="footer-section" style="max-width: 1200px; margin: 0 auto">
+        <div class="footer-inner">
+          <div
+            class="section-label"
+            style="justify-content: center; margin-bottom: 1.5rem"
+          >
+            Let's Connect
+          </div>
+          <a href="mailto:marianapaco.m.21@gmail.com" class="footer-email"
+            >marianapaco.m.21@gmail.com</a
+          >
+          <div class="social-links">
+            <a
+              href="https://linkedin.com/in/mariana-p-368351271"
+              target="_blank"
+              class="social-link"
+            >
+              <svg
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="#" class="social-link">
+              <svg
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+              GitHub
+            </a>
+            <a
+              href="https://doi.org/10.1101/2025.10.30.685465"
+              target="_blank"
+              class="social-link"
+            >
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                />
+              </svg>
+              bioRxiv
+            </a>
+          </div>
+          <div class="footer-bottom">
+            <p>
+              © 2025 Mariana Paco Mendivil &nbsp;·&nbsp; Data Scientist & AI
+              Engineer &nbsp;·&nbsp; San Diego, CA
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text3)">
+              Built with curiosity and caffeine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODALS ── -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+      <div class="modal" id="modalContent">
+        <div class="modal-header">
+          <div>
+            <div
+              id="modalType"
+              class="project-card-type"
+              style="margin-bottom: 0.5rem"
+            ></div>
+            <h2
+              id="modalTitle"
+              class="section-title"
+              style="font-size: 1.6rem; margin-bottom: 0"
+            ></h2>
+          </div>
+          <button class="modal-close" onclick="closeModalDirect()">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <script>
+      // Cursor glow
+      const glow = document.getElementById("cursorGlow");
+      document.addEventListener("mousemove", (e) => {
+        glow.style.left = e.clientX + "px";
+        glow.style.top = e.clientY + "px";
+      });
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), i * 60);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // Modal data
+      const projects = {
+        aspred: {
+          type: "ML · NLP · Immunology",
+          typeClass: "type-ml",
+          title: "ASPred: BCR Specificity via Protein Language Models",
+          problem:
+            "B Cell Receptor (BCR) specificity prediction is a central challenge in immunology and vaccine design. Determining which antigen a BCR will recognize — from sequence alone — would accelerate antibody discovery and deepen our understanding of adaptive immunity.",
+          approach:
+            "We fine-tuned ESM2 and ProtT5 using PEFT (LoRA) with contrastive and supervised classification objectives. Special care was taken to prevent repertoire-level data leakage between train/val/test splits — a non-obvious but critical issue in immune data. Evolutionary signals in BCR sequences were exploited through transformer embeddings.",
+          tools: [
+            "PyTorch",
+            "ESM2",
+            "ProtT5",
+            "LoRA/PEFT",
+            "Slurm HPC",
+            "Contrastive Learning",
+            "Python",
+            "Pandas",
+          ],
+          results:
+            "ASPred achieved strong classification performance across multiple antigen specificity classes. The ablation study framework revealed that LoRA rank and attention head selection were the primary drivers of performance. Work was presented as a poster at NeurIPS 2024 Latinx in AI workshop.",
+          metrics: [
+            { val: "NeurIPS", label: "Presented At" },
+            { val: "PEFT", label: "Method" },
+            { val: "ESM2", label: "Base Model" },
+            { val: "bioRxiv", label: "Published" },
+          ],
+          link: "https://doi.org/10.1101/2025.10.30.685465",
+        },
+        abaffinity: {
+          type: "ML · Structural Biology · Drug Design",
+          typeClass: "type-ml",
+          title: "Ab-Affinity: LLM-Guided Antibody Maturation",
+          problem:
+            "Antibody affinity maturation — evolving antibody sequences to bind more tightly to a target — is a key step in therapeutic development. Traditional directed evolution approaches are expensive and slow.",
+          approach:
+            "Combined sequence-level predictions from a protein language model with structure-based and molecular dynamics metrics (GROMACS simulations, Rosetta SnugDock energy terms) to score candidate mutations. A supervised optimization loop iteratively suggested and evaluated mutations, guided by both sequence fitness and structural stability.",
+          tools: [
+            "PyTorch",
+            "GROMACS",
+            "Rosetta",
+            "SnugDock",
+            "ProteinMPNN",
+            "AlphaFold",
+            "Python",
+          ],
+          results:
+            "The hybrid sequence-structure approach outperformed sequence-only baselines on binding affinity prediction. The multi-modal scoring framework provided interpretable signals for mutation selection. Work available as a preprint on bioRxiv.",
+          metrics: [
+            { val: "2024", label: "Year" },
+            { val: "Hybrid", label: "Approach" },
+            { val: "MD+LLM", label: "Pipeline" },
+            { val: "bioRxiv", label: "Published" },
+          ],
+          link: "https://doi.org/10.1101/2024.12.19.629473",
+        },
+        t2d: {
+          type: "Causal Discovery · Microbiome · Health",
+          typeClass: "type-analysis",
+          title: "Causality in Gut Microbiome for Type 2 Diabetes",
+          problem:
+            "Association studies between gut microbiome composition and Type 2 Diabetes (T2D) abound, but correlation is not causation. Identifying which microbial species actively drive metabolic disease risk requires causal inference.",
+          approach:
+            "Applied three causal discovery algorithms — PC, FCI, and GES — to gut microbiome abundance data from T2D patients and controls. Ensembled the causal graphs to identify robust, algorithm-invariant edges. Built interpretable predictive models linking identified causal microbes to disease risk scores.",
+          tools: [
+            "Python",
+            "causal-learn",
+            "PC / FCI / GES",
+            "Pandas",
+            "scikit-learn",
+            "Plotly / Dash",
+            "NetworkX",
+          ],
+          results:
+            "Identified a small set of microbes with robust causal signatures in T2D, including several not previously highlighted in association studies. Interactive visualization dashboard deployed as a live website for scientific communication.",
+          metrics: [
+            { val: "3", label: "Algorithms" },
+            { val: "Live", label: "Demo Site" },
+            { val: "T2D", label: "Disease Area" },
+            { val: "Causal", label: "Inference" },
+          ],
+          link: "#",
+        },
+        metagen: {
+          type: "Metagenomics · Soil · Microbiome",
+          typeClass: "type-bio",
+          title: "Soil Microbiome Profiling at Loam Bio",
+          problem:
+            "Characterizing soil microbial communities at scale is essential for agricultural biotech. Processing large NGS datasets from diverse soil samples requires robust, reproducible, and scalable pipelines.",
+          approach:
+            "Developed end-to-end metagenomic pipelines using Qiime2 for 16S amplicon data and Kraken2/HUMAnN for shotgun metagenomics. Containerized with Docker and deployed on AWS S3 for data management. Built Plotly/Dash dashboards for real-time stakeholder reporting.",
+          tools: [
+            "Qiime2",
+            "Kraken2",
+            "HUMAnN",
+            "AWS S3",
+            "Docker",
+            "Python",
+            "Plotly",
+            "Dash",
+            "PyTorch",
+          ],
+          results:
+            "Pipeline processed hundreds of soil samples across multiple field sites. Dashboards enabled non-technical stakeholders to explore functional microbiome traits and site comparisons interactively. Microbial trait models built in PyTorch for functional prediction.",
+          metrics: [
+            { val: "100s", label: "Samples" },
+            { val: "AWS", label: "Cloud" },
+            { val: "Docker", label: "Containerized" },
+            { val: "Live", label: "Dashboard" },
+          ],
+          link: "#",
+        },
+        antibody: {
+          type: "ML · Structural Biology · NIH",
+          typeClass: "type-analysis",
+          title: "Antibody–Antigen Structural Energy Analysis",
+          problem:
+            "Understanding the structural determinants of antibody-antigen binding affinity is critical for therapeutic antibody design. Intermolecular energy patterns from docking simulations encode useful signals for binding prediction.",
+          approach:
+            "Used Rosetta SnugDock for antibody-antigen docking simulations. Extracted energy terms and interface features as input to Random Forest and SVM classifiers. Analyzed which energy components were most predictive of high-affinity binding.",
+          tools: [
+            "Python",
+            "Pandas",
+            "scikit-learn",
+            "Random Forest",
+            "SVM",
+            "Rosetta SnugDock",
+            "NumPy",
+          ],
+          results:
+            "Identified key intermolecular energy terms correlated with binding. Models provided interpretable feature importances supporting NIH-funded antibody design decisions. Work contributed to the Ab-Affinity manuscript pipeline.",
+          metrics: [
+            { val: "NIH", label: "Funded" },
+            { val: "RF+SVM", label: "Models" },
+            { val: "Rosetta", label: "Docking" },
+            { val: "2023", label: "Year" },
+          ],
+          link: "#",
+        },
+        viz1: {
+          type: "Visualization · Bioinformatics",
+          typeClass: "type-viz",
+          title: "Immune Repertoire Embedding Landscapes",
+          problem:
+            "Transformer embeddings of immune receptor sequences are high-dimensional and opaque. Visualizing the geometry of these embedding spaces reveals cluster structure and separability by antigen specificity.",
+          approach:
+            "Extracted ESM2 embeddings for thousands of BCR sequences. Applied UMAP and t-SNE for dimensionality reduction. Built interactive Plotly visualizations with coloring by antigen class, V-gene usage, and model confidence scores.",
+          tools: [
+            "Python",
+            "ESM2",
+            "UMAP",
+            "t-SNE",
+            "Plotly",
+            "Seaborn",
+            "Pandas",
+          ],
+          results:
+            "Visualizations revealed clear cluster separation by antigen specificity in the ESM2 embedding space. UMAP better preserved global structure than t-SNE for this application. Used to communicate results to collaborators and in the ASPred manuscript.",
+          metrics: [
+            { val: "1000s", label: "Sequences" },
+            { val: "UMAP", label: "Method" },
+            { val: "ESM2", label: "Embeddings" },
+            { val: "Interactive", label: "Visualization" },
+          ],
+          link: "#",
+        },
+        viz2: {
+          type: "Visualization · Microbiome",
+          typeClass: "type-viz",
+          title: "Microbiome Causal Network Dashboard",
+          problem:
+            "Causal graphs from microbiome analysis are complex and difficult to communicate to non-specialist stakeholders. An interactive dashboard bridges the gap between algorithmic output and scientific insight.",
+          approach:
+            "Built an interactive network visualization of the causal microbial graph using Plotly/Dash and NetworkX. Added filtering by edge confidence, organism taxonomy, and disease association. Designed for both scientific and leadership audiences.",
+          tools: ["Python", "Plotly", "Dash", "NetworkX", "D3.js", "Pandas"],
+          results:
+            "Dashboard deployed as a live website accompanying the T2D microbiome project. Enables users to explore causal relationships, filter by confidence, and generate shareable views of subgraphs.",
+          metrics: [
+            { val: "Live", label: "Deployed" },
+            { val: "Dash", label: "Framework" },
+            { val: "Interactive", label: "Network" },
+            { val: "T2D", label: "Domain" },
+          ],
+          link: "#",
+        },
+      };
+
+      function openModal(key) {
+        const p = projects[key];
+        if (!p) return;
+        document.getElementById("modalType").className =
+          "project-card-type " + p.typeClass;
+        document.getElementById("modalType").textContent = p.type;
+        document.getElementById("modalTitle").textContent = p.title;
+
+        const metricsHTML = p.metrics
+          .map(
+            (m) => `
+      <div class="modal-metric">
+        <span class="modal-metric-val">${m.val}</span>
+        <span class="modal-metric-label">${m.label}</span>
+      </div>
+    `
+          )
+          .join("");
+
+        const toolsHTML = p.tools
+          .map((t) => `<span class="tool-badge">${t}</span>`)
+          .join("");
+
+        document.getElementById("modalBody").innerHTML = `
+      <div class="modal-metric-row" style="margin-bottom:2rem;">${metricsHTML}</div>
+      <div class="modal-section">
+        <div class="modal-section-title">Problem Statement</div>
+        <p class="modal-text">${p.problem}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Approach & Methodology</div>
+        <p class="modal-text">${p.approach}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Tools & Libraries</div>
+        <div class="project-tools">${toolsHTML}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Results & Insights</div>
+        <p class="modal-text">${p.results}</p>
+      </div>
+      ${
+        p.link !== "#"
+          ? `
+      <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+        <a href="${p.link}" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;">
+          View Publication / Repository →
+        </a>
+      </div>`
+          : ""
+      }
+    `;
+
+        document.getElementById("modalOverlay").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(e) {
+        if (e.target === document.getElementById("modalOverlay"))
+          closeModalDirect();
+      }
+
+      function closeModalDirect() {
+        document.getElementById("modalOverlay").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModalDirect();
+      });
+    </script>
+  </body>
+</html>
